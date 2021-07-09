@@ -352,3 +352,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 Cxunicorn.Teams.VirtualLobby.Moj.Api/ClientApp/package-lock.json
+BetaLixT.Submissions.Api/appsettings.Development.json

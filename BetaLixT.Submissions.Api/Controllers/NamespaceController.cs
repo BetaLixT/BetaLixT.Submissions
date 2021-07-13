@@ -25,6 +25,11 @@ namespace BetaLixT.Submissions.Api.Controllers
         }
 
 
+        /// <summary>
+        /// Creates a new namespace
+        /// </summary>
+        /// <param name="body">Create namespace request body</param>
+        /// <returns>Created namespace</returns>
         [HttpPost]
         public async Task CreateNamespaceAsync([FromBody]CreateNamespaceBody body)
         {
@@ -38,6 +43,18 @@ namespace BetaLixT.Submissions.Api.Controllers
             this.Response.StatusCode = 200;
             this.Response.ContentType = "application/json";
             await this.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(response)));
+        }
+
+        [HttpGet]
+        public async Task ListNamespacesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPost("{namespaceId}")]
+        public async Task GetNamespaceAsync(Guid namespaceId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

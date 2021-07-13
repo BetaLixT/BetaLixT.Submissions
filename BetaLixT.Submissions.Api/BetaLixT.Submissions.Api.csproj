@@ -21,6 +21,7 @@
     <Folder Include="Controllers\" />
     <Folder Include="Helper\" />
     <Folder Include="Models\ApiRequests\" />
+    <Folder Include="Controllers\Namespaces\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,5 +31,6 @@
 
   <ItemGroup>
     <None Remove="Models\ApiRequests\" />
+    <None Remove="Controllers\Namespaces\" />
   </ItemGroup>
 </Project>

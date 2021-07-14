@@ -24,5 +24,12 @@ namespace BetaLixT.Submissions.Api.Controllers.Namespaces
         {
             this._formReporisory = formReporisory;
         }
+
+        [HttpPost]
+        public async Task CreateFormAsync(
+            Guid namespaceId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BetaLixT.Submissions.Functionality.Interface.Entities
 {
@@ -9,5 +10,7 @@ namespace BetaLixT.Submissions.Functionality.Interface.Entities
 
         public virtual Namespace Namespace { get; set; }
         public virtual User Admin { get; set; }
+        public virtual ICollection<Submission> SubmissionsValidated { get; set; }
+
     }
 }

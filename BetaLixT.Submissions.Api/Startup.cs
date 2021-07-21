@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetCore.AutoRegisterDi;
 using BetaLixT.Submissions.Functionality.Implementation;
+using Microsoft.OpenApi.Models;
+using System;
 
 namespace BetaLixT.Submissions.Api
 {
@@ -49,7 +51,17 @@ namespace BetaLixT.Submissions.Api
             services.AddMvc().AddFluentValidation();
 
             // - Adding Swagger service
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "BetaLixT Submissions API",
+                    Description = "Submissions portal"
+                });
+
+                // Set the comments path for the Swagger JSON and UI.
+            });
         }
 
         // - This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

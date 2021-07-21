@@ -16,7 +16,7 @@ namespace BetaLixT.Submissions.Api.Controllers.Namespaces
 {
     [Route("api/namespaces/{namespaceId}/admins")]
     [ApiController]
-    public class NamespaceAdminController : Controller
+    public class NamespaceAdminController : ControllerBase
     {
         private readonly IAdminService _adminReporisory;
 

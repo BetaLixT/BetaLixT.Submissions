@@ -9,7 +9,7 @@ namespace BetaLixT.Submissions.Api.Controllers.Namespaces.Forms
 {
     [Route("api/namespaces/{namespaceId}/forms/{formId}/submissions")]
     [ApiController]
-    public class NamespaceFormSubmissionController : Controller
+    public class NamespaceFormSubmissionController : ControllerBase
     {
         private readonly ISubmissionService _submissionService;
 
@@ -20,14 +20,6 @@ namespace BetaLixT.Submissions.Api.Controllers.Namespaces.Forms
 
         [HttpGet]
         public async Task ListSubmissionsAsync(
-            Guid namespaceId,
-            Guid formId)
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpGet("export")]
-        public async Task ExportSubmissionsAsync(
             Guid namespaceId,
             Guid formId)
         {

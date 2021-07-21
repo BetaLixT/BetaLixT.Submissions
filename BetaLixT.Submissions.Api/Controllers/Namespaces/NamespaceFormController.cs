@@ -14,9 +14,9 @@ using Newtonsoft.Json;
 
 namespace BetaLixT.Submissions.Api.Controllers.Namespaces
 {
-    [Route("api/namespaces/{namespaceId}/admins")]
+    [Route("api/namespaces/{namespaceId}/forms")]
     [ApiController]
-    public class NamespaceFormController : Controller
+    public class NamespaceFormController : ControllerBase
     {
         private readonly IFormService _formReporisory;
 

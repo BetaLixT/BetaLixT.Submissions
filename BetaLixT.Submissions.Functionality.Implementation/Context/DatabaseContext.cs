@@ -16,6 +16,7 @@ namespace BetaLixT.Submissions.Functionality.Implementation.Context
         public DbSet<NamespaceAdmin> NamespaceAdmins { get; private set; }
         public DbSet<Form> Forms { get; private set; }
         public DbSet<Submission> Submissions { get; private set; }
+        public DbSet<Export> Exports { get; private set; }
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {}
@@ -50,6 +51,14 @@ namespace BetaLixT.Submissions.Functionality.Implementation.Context
                 .WithMany(ns => ns.Submissions)
                 .HasForeignKey(f => new { f.FormId, f.NamespaceId });
             modelBuilder.Entity<Submission>()
+                .HasKey(sub => new { sub.Id, sub.NamespaceId, sub.FormId });
+
+            modelBuilder.Entity<Export>().Property(export => export.ExportSchema).HasJsonConversion();
+            modelBuilder.Entity<Export>()
+                .HasOne(f => f.Form)
+                .WithMany(ns => ns.Exports)
+                .HasForeignKey(f => new { f.FormId, f.NamespaceId });
+            modelBuilder.Entity<Export>()
                 .HasKey(sub => new { sub.Id, sub.NamespaceId, sub.FormId });
         }
     }

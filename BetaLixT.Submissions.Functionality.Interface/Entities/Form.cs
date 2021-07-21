@@ -15,5 +15,6 @@ namespace BetaLixT.Submissions.Functionality.Interface.Entities
 
         public virtual Namespace Namespace { get; set; }
         public virtual ICollection<Submission> Submissions { get; set; }
+        public virtual ICollection<Export> Exports { get; set; }
     }
 }

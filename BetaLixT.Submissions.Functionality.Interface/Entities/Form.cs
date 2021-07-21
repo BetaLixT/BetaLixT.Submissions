@@ -12,6 +12,8 @@ namespace BetaLixT.Submissions.Functionality.Interface.Entities
         public string Title { get; set; }
         public bool RequiresApproval { get; set; }
         public FormSchema FormSchema { get; set; }
+        public DateTimeOffset DateTimeCreated { get; set; }
+        public DateTimeOffset DateTimeModified { get; set; }
 
         public virtual Namespace Namespace { get; set; }
         public virtual ICollection<Submission> Submissions { get; set; }

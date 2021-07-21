@@ -12,6 +12,8 @@ namespace BetaLixT.Submissions.Functionality.Interface.Entities
         public bool IsValidated { get; set; }
         public string ValidatedByUserId { get; set; }
         public ICollection<object> Responses { get; set; }
+        public DateTimeOffset DateTimeCreated { get; set; }
+        public DateTimeOffset DateTimeModified { get; set; }
 
         public virtual Form Form { get; set; }
         public virtual NamespaceAdmin ValidatedBy { get; set; }

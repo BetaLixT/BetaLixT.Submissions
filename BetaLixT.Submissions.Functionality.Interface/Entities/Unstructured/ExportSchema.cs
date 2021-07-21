@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BetaLixT.Submissions.Functionality.Interface.Entities
+namespace BetaLixT.Submissions.Functionality.Interface.Entities.Unstructured
 {
     public abstract class ExportSchema
     {

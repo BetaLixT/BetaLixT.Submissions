@@ -7,5 +7,6 @@ namespace BetaLixT.Submissions.Functionality.Interface.CoreServices
     public interface INamespaceService
     {
         Task<Namespace> CreateNamespaceAsync(string displayName);
+        Task<Namespace> EditNamespaceAsync(Guid namespaceId, string displayName);
     }
 }

@@ -45,6 +45,27 @@ namespace BetaLixT.Submissions.Api.Controllers
             await this.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(response)));
         }
 
+        /// <summary>
+        /// Patches an existing namespace
+        /// </summary>
+        /// <param name="namespaceId">The Id of the namespace that is to be patched</param>
+        /// <param name="body">Patch namespace request body</param>
+        /// <returns></returns>
+        [HttpPatch("{namespaceId}")]
+        public async Task EditNamespaceAsync(Guid namespaceId, [FromBody]CreateNamespaceBody body)
+        {
+            var ns = await this._namespaceService.EditNamespaceAsync(namespaceId, body.DisplayName);
+
+            var response = new SuccessResponseContent<Namespace>()
+            {
+                ResultData = ns
+            };
+
+            this.Response.StatusCode = 200;
+            this.Response.ContentType = "application/json";
+            await this.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(response)));
+        }
+
         [HttpGet]
         public async Task ListNamespacesAsync()
         {

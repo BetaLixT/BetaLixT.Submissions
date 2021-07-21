@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using BetaLixT.Submissions.Functionality.Interface.Repositories;
+using BetaLixT.Submissions.Functionality.Interface.CoreServices;
 
 namespace BetaLixT.Submissions.Api.Controllers.Namespaces.Forms
 {
     [Route("api/namespaces/{namespaceId}/forms/{formId}/submissions")]
     [ApiController]
-    public class SubmissionController : Controller
+    public class NamespaceFormSubmissionController : Controller
     {
-        private readonly ISubmissionRepository _submissionRepository;
+        private readonly ISubmissionService _submissionService;
 
-        public SubmissionController(ISubmissionRepository submissionRepository)
+        public NamespaceFormSubmissionController(ISubmissionService submissionService)
         {
-            this._submissionRepository = submissionRepository;
+            this._submissionService = submissionService;
         }
 
         [HttpGet]

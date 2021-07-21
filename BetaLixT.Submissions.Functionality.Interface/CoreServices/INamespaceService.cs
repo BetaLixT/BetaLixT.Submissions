@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using BetaLixT.Submissions.Functionality.Interface.Entities;
 
-namespace BetaLixT.Submissions.Functionality.Interface.Repositories
+namespace BetaLixT.Submissions.Functionality.Interface.CoreServices
 {
-    public interface INamespaceRepository
+    public interface INamespaceService
     {
         Task<Namespace> CreateNamespaceAsync(string displayName);
     }

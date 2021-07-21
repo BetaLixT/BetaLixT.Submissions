@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BetaLixT.Submissions.Api.Models.ApiRequests;
 using BetaLixT.Submissions.Api.Models.ApiResponses;
 using BetaLixT.Submissions.Functionality.Interface.Entities;
-using BetaLixT.Submissions.Functionality.Interface.Repositories;
+using BetaLixT.Submissions.Functionality.Interface.CoreServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -17,11 +17,11 @@ namespace BetaLixT.Submissions.Api.Controllers
     [ApiController]
     public class NamespaceController : ControllerBase
     {
-        private readonly INamespaceRepository _namespaceReporisory;
+        private readonly INamespaceService _namespaceService;
 
-        public NamespaceController(INamespaceRepository namespaceReporisory)
+        public NamespaceController(INamespaceService namespaceService)
         {
-            this._namespaceReporisory = namespaceReporisory;
+            this._namespaceService = namespaceService;
         }
 
 
@@ -33,7 +33,7 @@ namespace BetaLixT.Submissions.Api.Controllers
         [HttpPost]
         public async Task CreateNamespaceAsync([FromBody]CreateNamespaceBody body)
         {
-            var ns = await this._namespaceReporisory.CreateNamespaceAsync(body.DisplayName);
+            var ns = await this._namespaceService.CreateNamespaceAsync(body.DisplayName);
 
             var response = new SuccessResponseContent<Namespace>()
             {

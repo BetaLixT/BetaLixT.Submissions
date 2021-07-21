@@ -43,7 +43,7 @@ namespace BetaLixT.Submissions.Api
 
             // - DI
             services.RegisterDatabaseService(Configuration.GetSection("ConnectionStrings")["DatabaseConnection"]);
-            services.RegisterRepositoryServices();
+            services.RegisterServiceServices();
 
             // - Model validation service
             services.AddMvc().AddFluentValidation();

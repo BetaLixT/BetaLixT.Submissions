@@ -20,7 +20,7 @@ namespace BetaLixT.Submissions.Functionality.Implementation
             );
         }
 
-        public static void RegisterRepositoryServices(this IServiceCollection services)
+        public static void RegisterServiceServices(this IServiceCollection services)
         {
             services.AddTransient<IDatabaseScripts, DatabaseScripts>();
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BetaLixT.Submissions.Api.Models.ApiRequests;
 using BetaLixT.Submissions.Api.Models.ApiResponses;
 using BetaLixT.Submissions.Functionality.Interface.Entities;
-using BetaLixT.Submissions.Functionality.Interface.Repositories;
+using BetaLixT.Submissions.Functionality.Interface.CoreServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -16,11 +16,11 @@ namespace BetaLixT.Submissions.Api.Controllers.Namespaces
 {
     [Route("api/namespaces/{namespaceId}/admins")]
     [ApiController]
-    public class AdminController
+    public class NamespaceAdminController : Controller
     {
-        private readonly IAdminRepository _adminReporisory;
+        private readonly IAdminService _adminReporisory;
 
-        public AdminController(IAdminRepository adminReporisory)
+        public NamespaceAdminController(IAdminService adminReporisory)
         {
             this._adminReporisory = adminReporisory;
         }

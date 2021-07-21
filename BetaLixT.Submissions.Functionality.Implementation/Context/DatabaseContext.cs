@@ -24,6 +24,8 @@ namespace BetaLixT.Submissions.Functionality.Implementation.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+            modelBuilder.Entity<Namespace>().Property(user => user.Configuration).HasJsonConversion();
+
             modelBuilder.Entity<User>().Property(user => user.Configuration).HasJsonConversion();
 
             modelBuilder.Entity<NamespaceAdmin>()

@@ -10,6 +10,7 @@ using BetaLixT.Submissions.Functionality.Interface.CoreServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using BetaLixT.Submissions.Functionality.Interface.CustomModels;
 
 namespace BetaLixT.Submissions.Api.Controllers
 {
@@ -35,7 +36,7 @@ namespace BetaLixT.Submissions.Api.Controllers
         {
             var ns = await this._namespaceService.CreateNamespaceAsync(body.DisplayName);
 
-            var response = new SuccessResponseContent<Namespace>()
+            var response = new SuccessResponseContent<NamespaceDetailed>()
             {
                 ResultData = ns
             };
@@ -56,7 +57,7 @@ namespace BetaLixT.Submissions.Api.Controllers
         {
             var ns = await this._namespaceService.EditNamespaceAsync(namespaceId, body.DisplayName);
 
-            var response = new SuccessResponseContent<Namespace>()
+            var response = new SuccessResponseContent<NamespaceDetailed>()
             {
                 ResultData = ns
             };
@@ -66,16 +67,82 @@ namespace BetaLixT.Submissions.Api.Controllers
             await this.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(response)));
         }
 
+        /// <summary>
+        /// Lists the namespaces in the database
+        /// </summary>
+        /// <param name="namespaceIdQuery">Filters the listing by Id</param>
+        /// <param name="displayNameQuery">Filters the listing by display name</param>
+        /// <param name="countPerPage">Number of records to be returned</param>
+        /// <param name="pageNumber">Page number of records (starts from 0)</param>
+        /// <returns>Listing of namespaces</returns>
         [HttpGet]
-        public async Task ListNamespacesAsync()
+        public async Task ListNamespacesAsync(
+            [FromQuery] string namespaceIdQuery,
+            [FromQuery] string displayNameQuery,
+            [FromQuery] int countPerPage = 1000,
+            [FromQuery] int pageNumber = 0
+            )
         {
-            throw new NotImplementedException();
+            var namespaces = await this._namespaceService.ListNamespacesAsync(
+                namespaceIdQuery,
+                displayNameQuery,
+                countPerPage,
+                pageNumber);
+
+            var response = new SuccessResponseContent<List<NamespaceListing>>()
+            {
+                ResultData = namespaces
+            };
+
+            this.Response.StatusCode = 200;
+            this.Response.ContentType = "application/json";
+            await this.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(response)));
         }
 
+        /// <summary>
+        /// Gets the count of namespaces in the database
+        /// </summary>
+        /// <param name="namespaceIdQuery">Filters the listing by Id</param>
+        /// <param name="displayNameQuery">Filters the listing by display name</param>
+        /// <returns>Count of namespaces</returns>
+        [HttpGet("count")]
+        public async Task GetListNamespacesCountAsync(
+            [FromQuery] string namespaceIdQuery,
+            [FromQuery] string displayNameQuery
+            )
+        {
+            var namespaceCount = await this._namespaceService.GetListNamespacesCountAsync(
+                namespaceIdQuery,
+                displayNameQuery);
+
+            var response = new SuccessResponseContent<int>()
+            {
+                ResultData = namespaceCount
+            };
+
+            this.Response.StatusCode = 200;
+            this.Response.ContentType = "application/json";
+            await this.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(response)));
+        }
+
+        /// <summary>
+        /// Gets the namespace
+        /// </summary>
+        /// <param name="namespaceId">Id of the namespace to be fetched</param>
+        /// <returns>The requested namespace</returns>
         [HttpPost("{namespaceId}")]
         public async Task GetNamespaceAsync(Guid namespaceId)
         {
-            throw new NotImplementedException();
+            var ns = await this._namespaceService.GetNamespaceAsync(namespaceId);
+
+            var response = new SuccessResponseContent<NamespaceDetailed>()
+            {
+                ResultData = ns
+            };
+
+            this.Response.StatusCode = 200;
+            this.Response.ContentType = "application/json";
+            await this.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(response)));
         }
     }
 }

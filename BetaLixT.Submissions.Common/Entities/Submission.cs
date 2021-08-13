@@ -11,7 +11,7 @@ namespace BetaLixT.Submissions.Common.Entities
         public int Id { get; set; }
         public bool IsValidated { get; set; }
         public string ValidatedByUserId { get; set; }
-        public ICollection<object> Responses { get; set; }
+        public IDictionary<int, object> Responses { get; set; }
         public DateTimeOffset DateTimeCreated { get; set; }
         public DateTimeOffset DateTimeModified { get; set; }
 

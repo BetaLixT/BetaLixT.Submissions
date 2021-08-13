@@ -17,19 +17,30 @@ namespace PlaygroundConsole
         static async Task Main(string[] args)
         {
             var form = GetSampleForm();
+            var (isFormValid, formValidErrorMessage) = form.ValidateProperties();
+            if(!isFormValid)
+            {
+                Console.WriteLine(formValidErrorMessage);
+            }
 
             var submission = new Submission
             {
-                Responses = new List<object>
+                Responses = new Dictionary<int, object>
                 {
-                    "This text",
-                    "Another text",
-                    "This is Long Message lol it's longer than allowed atleast",
-                    23
+                    { 0, "This text" },
+                    { 1, "This text" },
+                    { 2, "This is Long Message lol it's longer than allowed atleast" },
+                    { 3, 23 },
                 }
             };
 
-            for (int i = 0; i < form.FormSchema.Properties.Count; i++)
+            var (isSubmissionValid, SubmissionValidErrorMessage) = form.ValidateSubmission(submission);
+            if (!isSubmissionValid)
+            {
+                Console.WriteLine(SubmissionValidErrorMessage);
+            }
+
+            /*for (int i = 0; i < form.FormSchema.Properties.Count; i++)
             {
                 var property = form.FormSchema.Properties.ElementAt(i);
                 Console.WriteLine($"Property: {property.Title}");
@@ -61,7 +72,7 @@ namespace PlaygroundConsole
                         Console.WriteLine("\tNo value");
                     }
                 }
-            }
+            }*/
 
             var csvExport = new CsvExportSchema
             {
@@ -110,6 +121,7 @@ namespace PlaygroundConsole
                     Properties = new List<IFormProperty> {
                         new TextFieldProperty {
                             Title = "Name",
+                            Id = 0,
                             Description = "Your Name",
                             IsRequired = false,
                             Constraints = new List<IPropertyConstraint>
@@ -123,6 +135,7 @@ namespace PlaygroundConsole
                         },
                         new TextFieldProperty {
                             Title = "Name",
+                            Id = 1,
                             Description = "Your Name",
                             IsRequired = false,
                             Constraints = new List<IPropertyConstraint>
@@ -135,6 +148,7 @@ namespace PlaygroundConsole
                         },
                         new TextFieldProperty {
                             Title = "Name",
+                            Id = 2,
                             Description = "Your Name",
                             IsRequired = false,
                             Constraints = new List<IPropertyConstraint>
@@ -148,6 +162,7 @@ namespace PlaygroundConsole
                         },
                         new TextFieldProperty {
                             Title = "Name",
+                            Id = 3,
                             Description = "Your Name",
                             IsRequired = false,
                             Constraints = new List<IPropertyConstraint>
@@ -168,12 +183,12 @@ namespace PlaygroundConsole
         {
             return new Submission
             {
-                Responses = new List<object>
+                Responses = new Dictionary<int, object>
                 {
-                    "This text",
-                    "Another text",
-                    "This is Long Message lol it's longer than allowed atleast",
-                    "sdfsadfsdfsf"
+                    { 0, "This text" },
+                    { 1, "This text" },
+                    { 2, "This text" },
+                    { 3, "This text" },
                 }
             };
         }

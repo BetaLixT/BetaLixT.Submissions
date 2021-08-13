@@ -12,6 +12,7 @@ namespace BetaLixT.Submissions.Common.Entities.Unstructured.FormProperties
             typeof(MaxLengthConstraint)
         });
 
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsRequired { get; set; }

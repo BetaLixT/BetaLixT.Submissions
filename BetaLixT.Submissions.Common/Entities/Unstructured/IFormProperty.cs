@@ -8,6 +8,7 @@ namespace BetaLixT.Submissions.Common.Entities.Unstructured
 {
     public interface IFormProperty
     {
+        int Id { get; set; }
         string Title { get; set; }
         string Description { get; set; }
         bool IsRequired { get; set; }

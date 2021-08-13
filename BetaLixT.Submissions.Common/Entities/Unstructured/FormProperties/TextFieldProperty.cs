@@ -8,7 +8,7 @@ namespace BetaLixT.Submissions.Common.Entities.Unstructured.FormProperties
 {
     public class TextFieldProperty: IFormProperty
     {
-        private static readonly ICollection<Type> AllowedConstraints = new ReadOnlyCollection<Type>(new List<Type> {
+        private static readonly ReadOnlyCollection<Type> AllowedConstraints = new ReadOnlyCollection<Type>(new List<Type> {
             typeof(MaxLengthConstraint)
         });
 
@@ -16,6 +16,11 @@ namespace BetaLixT.Submissions.Common.Entities.Unstructured.FormProperties
         public string Description { get; set; }
         public bool IsRequired { get; set; }
         public ICollection<IPropertyConstraint> Constraints { get; set; }
+
+        public ReadOnlyCollection<Type> GetAllowedConstraints()
+        {
+            return AllowedConstraints;
+        }
 
         Tuple<bool, IPropertyConstraint> IFormProperty.ValidateConstraints()
         {

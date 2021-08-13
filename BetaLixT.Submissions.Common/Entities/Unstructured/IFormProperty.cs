@@ -12,7 +12,7 @@ namespace BetaLixT.Submissions.Common.Entities.Unstructured
         bool IsRequired { get; set; }
         ICollection<IPropertyConstraint> Constraints { get; set; }
 
-        Tuple<bool, IPropertyConstraint> ValidateConstraints(object value);
+        Tuple<bool, IPropertyConstraint> ValidateConstraints();
         bool ValidateField(object value);
         Tuple<bool, string> EvaluateConstraints(object value);
     }

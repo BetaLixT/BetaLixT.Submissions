@@ -6,10 +6,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NetCore.AutoRegisterDi;
-using BetaLixT.Submissions.Functionality.Implementation;
 using Microsoft.OpenApi.Models;
 using System;
+using BetaLixT.Submissions.Common;
 
 namespace BetaLixT.Submissions.Api
 {
@@ -45,7 +44,7 @@ namespace BetaLixT.Submissions.Api
 
             // - DI
             services.RegisterDatabaseService(Configuration.GetSection("ConnectionStrings")["DatabaseConnection"]);
-            services.RegisterServiceServices();
+            services.RegisterApiServices();
 
             // - Model validation service
             services.AddMvc().AddFluentValidation();

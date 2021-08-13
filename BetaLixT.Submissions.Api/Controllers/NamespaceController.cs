@@ -5,12 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using BetaLixT.Submissions.Api.Models.ApiRequests;
 using BetaLixT.Submissions.Api.Models.ApiResponses;
-using BetaLixT.Submissions.Functionality.Interface.Entities;
-using BetaLixT.Submissions.Functionality.Interface.CoreServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using BetaLixT.Submissions.Functionality.Interface.CustomModels;
+using BetaLixT.Submissions.Api.CoreServices;
 
 namespace BetaLixT.Submissions.Api.Controllers
 {
@@ -18,9 +16,9 @@ namespace BetaLixT.Submissions.Api.Controllers
     [ApiController]
     public class NamespaceController : ControllerBase
     {
-        private readonly INamespaceService _namespaceService;
+        private readonly NamespaceService _namespaceService;
 
-        public NamespaceController(INamespaceService namespaceService)
+        public NamespaceController(NamespaceService namespaceService)
         {
             this._namespaceService = namespaceService;
         }
@@ -32,7 +30,7 @@ namespace BetaLixT.Submissions.Api.Controllers
         /// <param name="body">Create namespace request body</param>
         /// <returns>Created namespace</returns>
         [HttpPost]
-        public async Task CreateNamespaceAsync([FromBody]CreateNamespaceBody body)
+        public async Task<IActionResult> CreateNamespaceAsync([FromBody]CreateNamespaceBody body)
         {
             var ns = await this._namespaceService.CreateNamespaceAsync(body.DisplayName);
 
@@ -41,9 +39,7 @@ namespace BetaLixT.Submissions.Api.Controllers
                 ResultData = ns
             };
 
-            this.Response.StatusCode = 200;
-            this.Response.ContentType = "application/json";
-            await this.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(response)));
+            return this.Ok(response);
         }
 
         /// <summary>
@@ -53,7 +49,7 @@ namespace BetaLixT.Submissions.Api.Controllers
         /// <param name="body">Patch namespace request body</param>
         /// <returns></returns>
         [HttpPatch("{namespaceId}")]
-        public async Task EditNamespaceAsync(Guid namespaceId, [FromBody]CreateNamespaceBody body)
+        public async Task<IActionResult> EditNamespaceAsync(Guid namespaceId, [FromBody]CreateNamespaceBody body)
         {
             var ns = await this._namespaceService.EditNamespaceAsync(namespaceId, body.DisplayName);
 
@@ -62,9 +58,7 @@ namespace BetaLixT.Submissions.Api.Controllers
                 ResultData = ns
             };
 
-            this.Response.StatusCode = 200;
-            this.Response.ContentType = "application/json";
-            await this.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(response)));
+            return this.Ok(response);
         }
 
         /// <summary>
@@ -76,7 +70,7 @@ namespace BetaLixT.Submissions.Api.Controllers
         /// <param name="pageNumber">Page number of records (starts from 0)</param>
         /// <returns>Listing of namespaces</returns>
         [HttpGet]
-        public async Task ListNamespacesAsync(
+        public async Task<IActionResult> ListNamespacesAsync(
             [FromQuery] string namespaceIdQuery,
             [FromQuery] string displayNameQuery,
             [FromQuery] int countPerPage = 1000,
@@ -94,9 +88,7 @@ namespace BetaLixT.Submissions.Api.Controllers
                 ResultData = namespaces
             };
 
-            this.Response.StatusCode = 200;
-            this.Response.ContentType = "application/json";
-            await this.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(response)));
+            return this.Ok(response);
         }
 
         /// <summary>
@@ -106,7 +98,7 @@ namespace BetaLixT.Submissions.Api.Controllers
         /// <param name="displayNameQuery">Filters the listing by display name</param>
         /// <returns>Count of namespaces</returns>
         [HttpGet("count")]
-        public async Task GetListNamespacesCountAsync(
+        public async Task<IActionResult> GetListNamespacesCountAsync(
             [FromQuery] string namespaceIdQuery,
             [FromQuery] string displayNameQuery
             )
@@ -120,9 +112,7 @@ namespace BetaLixT.Submissions.Api.Controllers
                 ResultData = namespaceCount
             };
 
-            this.Response.StatusCode = 200;
-            this.Response.ContentType = "application/json";
-            await this.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(response)));
+            return this.Ok(response);
         }
 
         /// <summary>
@@ -131,7 +121,7 @@ namespace BetaLixT.Submissions.Api.Controllers
         /// <param name="namespaceId">Id of the namespace to be fetched</param>
         /// <returns>The requested namespace</returns>
         [HttpPost("{namespaceId}")]
-        public async Task GetNamespaceAsync(Guid namespaceId)
+        public async Task<IActionResult> GetNamespaceAsync(Guid namespaceId)
         {
             var ns = await this._namespaceService.GetNamespaceAsync(namespaceId);
 
@@ -140,9 +130,7 @@ namespace BetaLixT.Submissions.Api.Controllers
                 ResultData = ns
             };
 
-            this.Response.StatusCode = 200;
-            this.Response.ContentType = "application/json";
-            await this.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(response)));
+            return this.Ok(response);
         }
     }
 }

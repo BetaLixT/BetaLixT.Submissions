@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BetaLixT.Submissions.Api.CoreServices;
 using Microsoft.AspNetCore.Mvc;
-using BetaLixT.Submissions.Functionality.Interface.CoreServices;
 
 namespace BetaLixT.Submissions.Api.Controllers.Namespaces.Forms
 {
@@ -11,9 +11,9 @@ namespace BetaLixT.Submissions.Api.Controllers.Namespaces.Forms
     [ApiController]
     public class NamespaceFormSubmissionController : ControllerBase
     {
-        private readonly ISubmissionService _submissionService;
+        private readonly SubmissionService _submissionService;
 
-        public NamespaceFormSubmissionController(ISubmissionService submissionService)
+        public NamespaceFormSubmissionController(SubmissionService submissionService)
         {
             this._submissionService = submissionService;
         }

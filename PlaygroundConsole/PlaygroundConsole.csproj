@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BetaLixT.Submissions.Functionality.Implementation\BetaLixT.Submissions.Functionality.Implementation.csproj" />
+    <ProjectReference Include="..\BetaLixT.Submissions.Common\BetaLixT.Submissions.Common.csproj" />
   </ItemGroup>
 
 </Project>

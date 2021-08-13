@@ -1,4 +1,4 @@
-using BetaLixT.Submissions.Functionality.Interface.Scripts;
+using BetaLixT.Submissions.Common.Scripts;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +27,7 @@ namespace BetaLixT.Submissions.Api
             try
             {
                 
-                var databaseScripts = services.GetRequiredService<IDatabaseScripts>();
+                var databaseScripts = services.GetRequiredService<DatabaseScripts>();
                 databaseScripts.Initialize();
                 
             }

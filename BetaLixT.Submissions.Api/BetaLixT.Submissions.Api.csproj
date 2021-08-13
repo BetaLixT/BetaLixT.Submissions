@@ -22,14 +22,15 @@
     <Folder Include="Models\ApiRequests\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BetaLixT.Submissions.Functionality.Implementation\BetaLixT.Submissions.Functionality.Implementation.csproj" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <None Remove="Models\ApiRequests\" />
     <None Remove="Controllers\Namespaces\" />
     <None Remove="Controllers\Namespaces\Forms\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\BetaLixT.Submissions.Common\BetaLixT.Submissions.Common.csproj" />
   </ItemGroup>
 </Project>

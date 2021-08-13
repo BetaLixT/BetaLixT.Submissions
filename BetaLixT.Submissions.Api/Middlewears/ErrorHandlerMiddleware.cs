@@ -1,6 +1,6 @@
 ﻿using BetaLixT.Submissions.Api.Models.ApiResponses;
-using BetaLixT.Submissions.Functionality.Interface;
-using BetaLixT.Submissions.Functionality.Interface.Exceptions;
+using BetaLixT.Submissions.Common;
+using BetaLixT.Submissions.Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Net;

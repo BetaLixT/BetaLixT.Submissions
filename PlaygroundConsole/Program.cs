@@ -1,7 +1,7 @@
-﻿using BetaLixT.Submissions.Functionality.Interface.Entities;
-using BetaLixT.Submissions.Functionality.Interface.Entities.Unstructured;
-using BetaLixT.Submissions.Functionality.Interface.Entities.Unstructured.FormProperties;
-using BetaLixT.Submissions.Functionality.Interface.Entities.Unstructured.PropertyValidators;
+﻿using BetaLixT.Submissions.Common.Entities;
+using BetaLixT.Submissions.Common.Entities.Unstructured;
+using BetaLixT.Submissions.Common.Entities.Unstructured.FormProperties;
+using BetaLixT.Submissions.Common.Entities.Unstructured.PropertyConstraints;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -21,12 +21,12 @@ namespace PlaygroundConsole
                 FormSchema = new FormSchema
                 {
                     Title = "Test",
-                    Properties = new List<FormProperty> { 
+                    Properties = new List<IFormProperty> { 
                         new TextFieldProperty {
                             Title = "Name",
                             Description = "Your Name",
                             IsRequired = false,
-                            Constraints = new List<PropertyConstraint>
+                            Constraints = new List<IPropertyConstraint>
                             {
                                 new NumberConstraint
                                 {
